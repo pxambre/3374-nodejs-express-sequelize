@@ -5,10 +5,10 @@ const categoriaController = new CategoriaController();
 
 const router = Router();
 
-router.get('/cursos', (req, res) => categoriaController.listarTodos(req, res));
-router.get('/cursos/:id', (req, res) => categoriaController.listarUmPorId(req, res));
-router.post('/cursos', (req, res) => categoriaController.criar(req, res));
-router.put('/cursos/:id', (req, res) => categoriaController.atualizar(req, res));
-router.delete('/cursos/:id', (req, res) => categoriaController.remover(req, res));
+router.get('/categorias', (req, res) => categoriaController.listarTodos(req, res));
+router.get('/categorias/:id', (req, res) => categoriaController.listarUmPorId(req, res));
+router.post('/categorias', (req, res) => categoriaController.criar(req, res));
+router.put('/categorias/:id', (req, res) => categoriaController.atualizar(req, res));
+router.delete('/categorias/:id', (req, res) => categoriaController.remover(req, res));
 
 module.exports = router;
