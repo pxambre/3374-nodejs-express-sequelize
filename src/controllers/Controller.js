@@ -26,7 +26,7 @@ class Controller {
     const dadosParaCriacao = req.body;
     try {
       const novoRegisto = await this.entidadeService.criarRegisto(dadosParaCriacao);
-      return res.send(201).json(novoRegisto);
+      return res.status(201).json(novoRegisto);
     } catch (erro) {
       return res.status(500).json({ erro: erro.message });
     }
