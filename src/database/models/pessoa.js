@@ -4,12 +4,12 @@ module.exports = (sequelize, DataTypes) => {
   class Pessoa extends Model {
     static associate(models) {
       Pessoa.hasMany(models.Curso, {
-        foreignKey: 'docente_id'
+        foreignKey: 'docente_id',
       });
       Pessoa.hasMany(models.Matricula, {
         foreignKey: 'estudante_id',
         scope: { status: 'matriculado' },
-        as: 'aulasMatriculadas'
+        as: 'aulasMatriculadas',
       });
     }
   }
@@ -25,7 +25,17 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Pessoa',
       tableName: 'pessoas',
-      paranoid: true
+      paranoid: true,
+      defaultScope: {
+        where: {
+          ativo: true,
+        },
+      },
+      scopes: {
+        todosOsRegistos: {
+          where: {},
+        },
+      },
     }
   );
   return Pessoa;
