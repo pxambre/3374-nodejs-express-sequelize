@@ -50,7 +50,7 @@ class Controller {
   async remover(req, res) {
     const { id } = req.params;
     try {
-      await this.entidadeService.registoPorId(Number(id));
+      await this.entidadeService.removerRegisto(Number(id));
       res.status(200).json({ mensagem: `id ${id} removido.`});
     } catch (erro) {
       return res.status(500).json(erro.message);

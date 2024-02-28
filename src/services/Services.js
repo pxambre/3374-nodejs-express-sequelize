@@ -26,7 +26,7 @@ class Services {
   }
 
   async removerRegisto(id) {
-    return dataSource[this.model].destroy({ where: { id: id}});
+    return dataSource[this.model].destroy({ where: { id: id } });
   }
 }
 
