@@ -5,11 +5,11 @@ class Services {
     this.model = nomeDoModel;
   }
 
-  async listarTodosOsRegistos() {
-    return dataSource[this.model].findAll();
+  async listarTodosOsRegistos(where = {}) {
+    return dataSource[this.model].findAll({ where: { ...where } });
   }
 
-  async listaRegistosPorEscopo(escopo){
+  async listaRegistosPorEscopo(escopo) {
     return dataSource[this.model].scope(escopo).findAll();
   }
 
@@ -18,7 +18,7 @@ class Services {
   }
 
   async listaRegisto(where) {
-    return dataSource[this.model].findOne({ where: { ...where }});
+    return dataSource[this.model].findOne({ where: { ...where } });
   }
 
   async criarRegisto(dadosDoRegisto) {
@@ -26,9 +26,12 @@ class Services {
   }
 
   async atualizarRegisto(dadosAtualizados, where) {
-    const listaDeRegistosAtualizados = dataSource[this.model].update(dadosAtualizados, {
-      where: { ...where }
-    });
+    const listaDeRegistosAtualizados = dataSource[this.model].update(
+      dadosAtualizados,
+      {
+        where: { ...where },
+      }
+    );
     return listaDeRegistosAtualizados[0] === 0 ? false : true;
   }
 
