@@ -7,19 +7,34 @@ class PessoaController extends Controller {
     super(pessoaServices);
   }
 
-  async listaMatriculas(req, res) {
-    const { estudanteId } = req.params;
+  async listaMatriculasAtivas(req, res) {
+    const { estudante_id } = req.params;
     try {
-      const listaMatriculas = await pessoaServices.listarMatriculasPorEstudante(Number(estudanteId));
+      const listaMatriculas = await pessoaServices.listarMatriculasAtivasPorEstudante(
+        Number(estudante_id)
+      );
       return res.status(200).json(listaMatriculas);
     } catch (erro) {
       return res.status(500).json(erro.message);
     }
   }
 
-  async listarTodasPessoas(req, res){
+  async listaTodasAsMatriculas(req, res) {
+    const { estudante_id } = req.params;
     try {
-      const listasTodasPessoas = await pessoaServices.listarPessoasEscopoTodos();
+      const listaMatriculas = await pessoaServices.listarTodasAsMatriculasPorEstudante(
+        Number(estudante_id)
+      );
+      return res.status(200).json(listaMatriculas);
+    } catch (erro) {
+      return res.status(500).json(erro.message);
+    }
+  }
+
+  async listarTodasPessoas(req, res) {
+    try {
+      const listasTodasPessoas =
+        await pessoaServices.listarPessoasEscopoTodos();
       return res.status(200).json(listasTodasPessoas);
     } catch (erro) {
       return res.status(500).json(erro.message);

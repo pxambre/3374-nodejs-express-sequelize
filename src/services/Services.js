@@ -13,19 +13,22 @@ class Services {
     return dataSource[this.model].scope(escopo).findAll();
   }
 
-  async registoPorId(id) {
+  async listaRegistoPorId(id) {
     return dataSource[this.model].findByPk(id);
+  }
+
+  async listaRegisto(where) {
+    return dataSource[this.model].findOne({ where: { ...where }});
   }
 
   async criarRegisto(dadosDoRegisto) {
     return dataSource[this.model].create(dadosDoRegisto);
   }
 
-  async atualizarRegisto(dadosAtualizados, id) {
+  async atualizarRegisto(dadosAtualizados, where) {
     const listaDeRegistosAtualizados = dataSource[this.model].update(dadosAtualizados, {
-      where: { id: id}
+      where: { ...where }
     });
-    
     return listaDeRegistosAtualizados[0] === 0 ? false : true;
   }
 

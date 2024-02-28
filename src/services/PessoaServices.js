@@ -5,9 +5,15 @@ class PessoaServices extends Services {
     super('Pessoa');
   }
   
-  async listarMatriculasPorEstudante(id) {
-    const estudante = await super.registoPorId(id);
+  async listarMatriculasAtivasPorEstudante(id) {
+    const estudante = await super.listaRegistoPorId(id);
     const listaMatriculas = await estudante.getAulasMatriculadas();
+    return listaMatriculas;
+  }
+
+  async listarTodasAsMatriculasPorEstudante(id) {
+    const estudante = await super.listaRegistoPorId(id);
+    const listaMatriculas = await estudante.getTodasAsMatriculadas();
     return listaMatriculas;
   }
 
