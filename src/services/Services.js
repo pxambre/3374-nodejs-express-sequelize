@@ -21,6 +21,10 @@ class Services {
     return dataSource[this.model].findOne({ where: { ...where } });
   }
 
+  async numeroTotalDeRegistos(options) {
+    return dataSource[this.model].findAndCountAll({ ...options });
+  }
+
   async criarRegisto(dadosDoRegisto) {
     return dataSource[this.model].create(dadosDoRegisto);
   }
